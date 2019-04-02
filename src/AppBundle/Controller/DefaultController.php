@@ -10,9 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\Form\Button;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class DefaultController extends Controller
 {
@@ -35,10 +37,16 @@ class DefaultController extends Controller
      * @Route("/api-get", name="apiGet")
      * @param Request $request
      * @param EntityManager $em
-     * @return null
+     * @param SerializerInterface $serializer
+     * @return
      */
-    public function getListPersonneApi(Request $request, EntityManager $em) {
-        return null;
+    public function getListPersonneApi(Request $request, EntityManagerInterface $em, SerializerInterface $serializer) {
+        $repoPersonnes = $em->getRepository(Personne::class);
+        $personnes = $repoPersonnes->findAll();
+
+        $retour = $serializer->normalize($personnes);
+
+        return new JsonResponse($retour);
     }
 
     /**
@@ -60,9 +68,6 @@ class DefaultController extends Controller
         $personne->setPrenom($prenom);
         $personne->setAge($age);
 
-
-        dump($personne);
-        die;
 
         $em->persist($personne);
         $em->flush();

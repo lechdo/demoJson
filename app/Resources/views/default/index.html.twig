@@ -10,11 +10,15 @@
    <p>Un lien est créé vers jquery pour pouvoir exploiter ses méthodes</p>
    <p>un lien est créé vers api.js, fichier contenant nos éléments et nos fonctions </p>
 
+   <a href="{{ path('personne_index') }}">lien vers le crud de Personne</a>
+
    <p>le formulaire Personne</p>
    {{ form_start(form) }}
    {{ form_row(form.nom, {"id": "nom"}) }}
    {{ form_row(form.prenom, {"id": "prenom"}) }}
    {{ form_row(form.age, {"id": "age"}) }}
+   {#pour mettre un attribut js, il faut placer un json dans le json des parametres#}
+   {#sous la clé "attr"#}
    {{ form_row(form.valider, {
       "id": "valider",
       "attr": {
@@ -25,10 +29,19 @@
 
    <p>la liste des personnes dans la bdd</p>
    <button onclick="getMethod()">effectuer une requête</button>
-   <div id="liste">
+   <div>
+   <table>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Age</th>
+      <tbody id="liste">
+
+      </tbody>
+   </table>
+
    </div>
-   <div id="loader">
-      <img style="display: none" src="" alt="">
+   <div>
+      <img id="loader" style="display: none" src="{{ asset('images/loader.gif') }}" alt="">
    </div>
 
 {% endblock %}
