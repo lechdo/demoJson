@@ -1,0 +1,23 @@
+- Créer un dossier dans le dossier www de wamp
+
+- dans le cmd, créer un projet symfony
+	composer create-project symfony/framework-standard-edition .
+
+- ouvrir gitbash dans le dossier
+- taper :
+	git init
+	git remote add origin https://github.com/lechdo/demoJson
+	git remote -v
+
+- aller sur gitKraken
+- ouvrir le dossier directement sur le pc
+- initialiser s'il le demande
+- selectionner la branche master qui se présente dans la hierarchie
+- appuyer sur le bouton rouge...
+
+- pull !!!
+
+
+Dans le cas ou le proxy bloque :
+	git config --global proxy.http http://<le proxy>:<le port>
+        git config --global proxy.https http://<le proxy>:<le port>
