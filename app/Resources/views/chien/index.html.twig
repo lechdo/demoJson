@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Chiens list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Race</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for chien in chiens %}
+            <tr>
+                <td><a href="{{ path('chien_show', { 'id': chien.id }) }}">{{ chien.id }}</a></td>
+                <td>{{ chien.nom }}</td>
+                <td>{{ chien.race }}</td>
+                <td>{{ chien.age }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('chien_show', { 'id': chien.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('chien_edit', { 'id': chien.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('chien_new') }}">Create a new chien</a>
+        </li>
+    </ul>
+{% endblock %}
