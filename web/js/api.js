@@ -55,21 +55,24 @@ postMethod = function () {
                 prenom: prenom,
                 age: age
             },
-            success: () => {alert("ça marche !")}
+            success: () => {alert("la requete à été effectuée")}
         }
 
     )
-        .done(function () {
+        .done(function (apiResult) {
             createHumanTemplate()
         })
 }
 
-createHumanTemplate = function () {
+createHumanTemplate = function (apiResult) {
     var bloc = document.createElement("div")
 
-    var nom;
-    var prenom;
-    var age;
+    var nom = document.createElement("p");
+    nom.innerText = apiResult.nom;
+    var prenom  = document.createElement("p");
+    prenom.innerText = apiResult.prenom
+    var age  = document.createElement("p");
+    age.innerText = apiResult.age
 
     // méthode pour insérer le bloc dans une balise en séléctionnant son id.
     //$().append();
